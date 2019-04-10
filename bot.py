@@ -30,7 +30,7 @@ def medit(message_text,chat_id, message_id,reply_markup=None,parse_mode=None):
 @bot.message_handler(commands=['dick'])
 def dd(m):
     global number
-    text='Угадайте, в какой коробке хуй.'
+    text='Угадайте, в какой коробке пасюк!.'
     kb=types.InlineKeyboardMarkup(3)
     buttons1=[]
     buttons2=[]
@@ -86,10 +86,10 @@ def inline(call):
         if user.id not in game['users'] and call.data!='xyi':
             if 'penis' in call.data:
                 dick=True
-                bot.answer_callback_query(call.id, '🍆|Ура! Вы выбрали ящик с членом!', show_alert=True)
+                bot.answer_callback_query(call.id, '🍆|Ура! Вы выбрали ящик с пасюком!', show_alert=True)
             else:
                 dick=False
-                bot.answer_callback_query(call.id, '💨|О нет! Вы выбрали ящик без члена!', show_alert=True)
+                bot.answer_callback_query(call.id, '💨|О нет! Вы выбрали ящик без пасюка!', show_alert=True)
             
             game['users'].update({user.id:{'name':call.from_user.first_name,
                                           'dick':dick}})
@@ -129,12 +129,12 @@ def inline(call):
     
 def editmsg(game, end=False):
     if end==False:
-        text='Угадайте, в какой коробке хуй.\n\n'
+        text='Угадайте, в какой коробке пасюк.\n\n'
     else:
         text=''
     for ids in game['users']:
         if game['users'][ids]['dick']==True:
-            text+=game['users'][ids]['name']+': 🍆нашёл(ла) член\n'
+            text+=game['users'][ids]['name']+': 🍆нашёл(ла) пасюка\n'
         else:
             text+=game['users'][ids]['name']+': 💨открыл(а) пустую коробку\n'
     return text
