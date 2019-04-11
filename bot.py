@@ -139,8 +139,10 @@ def editmsg(game, end=False):
             text+=game['users'][ids]['name']+': 💨открыл(а) пустую коробку\n'
     return text
     
-    
-    
+@bot.message_handler(commands=['ugadaika'])
+    def pasuka(m):
+        bot.send_message(m.chat.id, "Ебнулся чтоли?")
+        
 print('7777')
 bot.polling(none_stop=True,timeout=600)
 
