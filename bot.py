@@ -86,7 +86,7 @@ def inline(call):
         if user.id not in game['users'] and call.data!='xyi':
             if 'penis' in call.data:
                 dick=True
-                bot.answer_callback_query(call.id, '🍆|Ура! Вы выбрали ящик с пасюком!', show_alert=True)
+                bot.answer_callback_query(call.id, '🐴|Ура! Вы выбрали ящик с пасюком!', show_alert=True)
             else:
                 dick=False
                 bot.answer_callback_query(call.id, '💨|О нет! Вы выбрали ящик без пасюка!', show_alert=True)
@@ -108,7 +108,7 @@ def inline(call):
         i=1
         while i<=9:
             if i in game['dicks']:
-                emoj='🍆'
+                emoj='🐴'
             else:
                 emoj='💨'
             if i<=3:
@@ -134,7 +134,7 @@ def editmsg(game, end=False):
         text=''
     for ids in game['users']:
         if game['users'][ids]['dick']==True:
-            text+=game['users'][ids]['name']+': 🍆нашёл(ла) пасюка\n'
+            text+=game['users'][ids]['name']+': 🐴нашёл(ла) пасюка\n'
         else:
             text+=game['users'][ids]['name']+': 💨открыл(а) пустую коробку\n'
     return text
