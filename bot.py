@@ -35,22 +35,22 @@ def dd(m):
     buttons1=[]
     buttons2=[]
     buttons3=[]
-    amount=random.randint(1,9)
+    amount=random.randint(0,9)
     i=0
     dicks=[]
     while i<amount:
-        x=random.randint(1,9)
+        x=random.randint(0,9)
         while x in dicks:
-            x=random.randint(1,9)
+            x=random.randint(0,9)
         dicks.append(x)
         i+=1
     i=1
     while i<=9:
-        randoms=random.randint(1,1000)
+        randoms=random.randint(0,1000)
         if i in dicks:
             callb='penis'
         else:
-            callb=str(random.randint(1,100))
+            callb=str(random.randint(0,100))
         if i<=3:
             buttons1.append(types.InlineKeyboardButton(text='📦', callback_data=callb+' '+str(number)+' '+str(randoms)))
         elif i<=6:
