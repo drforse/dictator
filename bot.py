@@ -97,7 +97,7 @@ def inline(call):
                 dick=True
                 bot.answer_callback_query(call.id, '🐴|Ура! Вы выбрали ящик с пасюком!', show_alert=True)
             elif 'gavno' in call.data:
-                govnarstvo="lol"
+                govnarstvo=True
                 bot.answer_callback_query(call.id, '🐴|Блядь, долбоеб! Вы выбрали ящик с кукива... Ой, с говном!', show_alert=True)
             else:
                 dick=False
@@ -150,8 +150,8 @@ def editmsg(game, end=False):
     for ids in game['users']:
         if game['users'][ids]['dick']==True:
             text+=game['users'][ids]['name']+': 🐴нашёл(ла) пасюка\n'
-        elif game['users'][ids]['govno']=="lol":
-            text+=game['users'][ids]['name']+': 🐴нашёл(ла) говно\n'
+        elif game['users'][ids]['govno']==True:
+            text+=game['users'][ids]['name']+': 💩нашёл(ла) говно\n'
         else:
             text+=game['users'][ids]['name']+': 💨открыл(а) пустую коробку\n'
     return text
