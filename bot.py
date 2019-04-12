@@ -38,11 +38,16 @@ def dd(m):
     amount=random.randint(0,9)
     i=0
     dicks=[]
+    govno=[]
     while i<amount:
         x=random.randint(0,9)
         while x in dicks:
             x=random.randint(0,9)
         dicks.append(x)
+        govn=random.randint(0,9)
+        while govn in govno:
+            govn=random.randint(0,9)
+        govno.append(govn)
         i+=1
     i=1
     while i<=9:
