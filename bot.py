@@ -120,7 +120,7 @@ def inline(call):
         while i<=9:
             if i in game['dicks']:
                 emoj='🐴'
-            elif i in game['govno']
+            elif i in game['govno']:
                 emoj='💩'
             else:
                 emoj='💨'
