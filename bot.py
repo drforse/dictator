@@ -16,6 +16,7 @@ bot = telebot.TeleBot(token)
 polls={}
 number=0
 pasuki=[]
+odmens=[441399484, 512006137, 268486177]
 
 try:
     pass
@@ -163,7 +164,7 @@ def pasuka(m):
     
 @bot.message_handler(commands=['addpasuk'])
 def addpasuka(m):
-    if m.user.id in odmens
+    if m.user.id in odmens:
         lol=m.text.split(' ', maxsplit = 1)
         lol=lol[1]
         pasuki.append(lol)
