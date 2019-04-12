@@ -98,7 +98,7 @@ def inline(call):
                 bot.answer_callback_query(call.id, '🐴|Ура! Вы выбрали ящик с пасюком!', show_alert=True)
             elif 'gavno' in call.data:
                 dick="kakashka"
-                bot.answer_callback_query(call.id, '🐴|Блядь, долбоеб! Вы выбрали ящик с кукива... Ой, с говном!', show_alert=True)
+                bot.answer_callback_query(call.id, '💩|Блядь, долбоеб! Вы выбрали ящик с кукива... Ой, с говном!', show_alert=True)
             else:
                 dick=False
                 bot.answer_callback_query(call.id, '💨|О нет! Вы выбрали ящик без пасюка!', show_alert=True)
