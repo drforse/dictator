@@ -104,7 +104,7 @@ def inline(call):
                 bot.answer_callback_query(call.id, '💨|О нет! Вы выбрали ящик без пасюка!', show_alert=True)
             
             game['users'].update({user.id:{'name':call.from_user.first_name,
-                                          'dick':dick
+                                          'dick':dick,
                                           'govno':govnarstvo}})
             kb=types.InlineKeyboardMarkup(3)
             
