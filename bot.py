@@ -15,8 +15,7 @@ bot = telebot.TeleBot(token)
 
 polls={}
 number=0
-pasuki=['я ебал осла', 'я пажилая чимчима', 'я им на челдун срал']
-odmens=['441399484', '512006137', '268486177']
+
 
 try:
     pass
@@ -157,22 +156,7 @@ def editmsg(game, end=False):
             text+=game['users'][ids]['name']+': 💨открыл(а) пустую коробку\n'
     return text
     
-@bot.message_handler(commands=['randompasuk'])
-def pasuka(m):
-    try:
-        tts = random.choice(pasuki)
-        bot.send_message(m.chat.id, tts)
-    except:
-        bot.send_message(m.chat.id, "ты ебак? тут пусто")
-    
-@bot.message_handler(commands=['addpasuk'])
-def addpasuka(m):
-    if m.from_user.id in odmens:
-        lol=m.text.split(' ', maxsplit = 1)
-        lol=lol[1]
-        pasuki.append(lol)
-    else:
-        bot.send_message(m.chat.id, 'sasi kui, ti ne admin')
+
     
 print('7777')
 bot.polling(none_stop=True,timeout=600)
