@@ -97,15 +97,14 @@ def inline(call):
                 dick=True
                 bot.answer_callback_query(call.id, '🐴|Ура! Вы выбрали ящик с пасюком!', show_alert=True)
             elif 'gavno' in call.data:
-                govnarstvo=True
+                dick="kakashka"
                 bot.answer_callback_query(call.id, '🐴|Блядь, долбоеб! Вы выбрали ящик с кукива... Ой, с говном!', show_alert=True)
             else:
                 dick=False
                 bot.answer_callback_query(call.id, '💨|О нет! Вы выбрали ящик без пасюка!', show_alert=True)
             
             game['users'].update({user.id:{'name':call.from_user.first_name,
-                                          'dick':dick,
-                                          'govno':govnarstvo}})
+                                          'dick':dick}})
             kb=types.InlineKeyboardMarkup(3)
             
             medit(editmsg(game), call.message.chat.id, call.message.message_id, reply_markup=game['kb'])
@@ -150,7 +149,7 @@ def editmsg(game, end=False):
     for ids in game['users']:
         if game['users'][ids]['dick']==True:
             text+=game['users'][ids]['name']+': 🐴нашёл(ла) пасюка\n'
-        elif game['users'][ids]['govno']==True:
+        elif game['users'][ids]['dick']=="kakashka":
             text+=game['users'][ids]['name']+': 💩нашёл(ла) говно\n'
         else:
             text+=game['users'][ids]['name']+': 💨открыл(а) пустую коробку\n'
