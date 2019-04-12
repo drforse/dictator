@@ -150,7 +150,7 @@ def editmsg(game, end=False):
         if game['users'][ids]['dick']==True:
             text+=game['users'][ids]['name']+': 🐴нашёл(ла) пасюка\n'
         elif game['users'][ids]['dick']=="kakashka":
-            text+=game['users'][ids]['name']+': 💩нашёл(ла) говно\n'
+            text+=game['users'][ids]['name']+': 💩нашёл(ла) кукивар... ой, говно\n'
         else:
             text+=game['users'][ids]['name']+': 💨открыл(а) пустую коробку\n'
     return text
