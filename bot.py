@@ -70,6 +70,7 @@ def dd(m):
     }}
                 )
     bot.send_message(m.chat.id, text, reply_markup=kb)
+    bot.send_message(m.chat.id, text, reply_markup=kb)
     number+=1
     
     
