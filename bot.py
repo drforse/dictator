@@ -15,6 +15,7 @@ bot = telebot.TeleBot(token)
 
 polls={}
 number=0
+pasuki=[]
 
 try:
     pass
@@ -155,10 +156,17 @@ def editmsg(game, end=False):
             text+=game['users'][ids]['name']+': 💨открыл(а) пустую коробку\n'
     return text
     
-@bot.message_handler(commands=['ugadaika'])
+@bot.message_handler(commands=['randompasuk'])
 def pasuka(m):
-    bot.send_message(m.chat.id, "Ебнулся чтоли?")
-        
+    tts = random.choice(pasuki)
+    bot.send_message(m.chat.id, tts)
+    
+@bot.message_handler(commands=['addpasuk'])
+def addpasuka(m):
+    lol=m.text.split(' ', maxsplit = 1)
+    lol=lol[1]
+    pasuki.append(lol)
+    
 print('7777')
 bot.polling(none_stop=True,timeout=600)
 
