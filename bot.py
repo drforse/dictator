@@ -163,9 +163,12 @@ def pasuka(m):
     
 @bot.message_handler(commands=['addpasuk'])
 def addpasuka(m):
-    lol=m.text.split(' ', maxsplit = 1)
-    lol=lol[1]
-    pasuki.append(lol)
+    if m.user.id in odmens
+        lol=m.text.split(' ', maxsplit = 1)
+        lol=lol[1]
+        pasuki.append(lol)
+    else:
+        bot.send_message(m.chat.id, 'sasi kui, ti ne admin')
     
 print('7777')
 bot.polling(none_stop=True,timeout=600)
