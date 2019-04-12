@@ -54,6 +54,8 @@ def dd(m):
         randoms=random.randint(0,1000)
         if i in dicks:
             callb='penis'
+        elif i in govno:
+            callb='gavno'
         else:
             callb=str(random.randint(0,100))
         if i<=3:
@@ -70,11 +72,11 @@ def dd(m):
     polls.update({number:{
         'users':{},
         'dicks':dicks,
-        'kb':kb
+        'kb':kb,
+        'govno':govno
         
     }}
                 )
-    bot.send_message(m.chat.id, text, reply_markup=kb)
     bot.send_message(m.chat.id, text, reply_markup=kb)
     number+=1
     
@@ -93,6 +95,9 @@ def inline(call):
             if 'penis' in call.data:
                 dick=True
                 bot.answer_callback_query(call.id, '🐴|Ура! Вы выбрали ящик с пасюком!', show_alert=True)
+            elif 'gavno' in call.data:
+                dick="lol"
+                bot.answer_callback_query(call.id, '🐴|Блядь, долбоеб! Вы выбрали ящик с кукива... Ой, с говном!', show_alert=True)
             else:
                 dick=False
                 bot.answer_callback_query(call.id, '💨|О нет! Вы выбрали ящик без пасюка!', show_alert=True)
@@ -115,6 +120,8 @@ def inline(call):
         while i<=9:
             if i in game['dicks']:
                 emoj='🐴'
+            elif i in game['govno']
+                emoj='💩'
             else:
                 emoj='💨'
             if i<=3:
@@ -140,6 +147,8 @@ def editmsg(game, end=False):
         text=''
     for ids in game['users']:
         if game['users'][ids]['dick']==True:
+            text+=game['users'][ids]['name']+': 🐴нашёл(ла) пасюка\n'
+        if game['users'][ids]['govno']=="lol":
             text+=game['users'][ids]['name']+': 🐴нашёл(ла) пасюка\n'
         else:
             text+=game['users'][ids]['name']+': 💨открыл(а) пустую коробку\n'
