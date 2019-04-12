@@ -159,8 +159,11 @@ def editmsg(game, end=False):
     
 @bot.message_handler(commands=['randompasuk'])
 def pasuka(m):
-    tts = random.choice(pasuki)
-    bot.send_message(m.chat.id, tts)
+    try:
+        tts = random.choice(pasuki)
+        bot.send_message(m.chat.id, tts)
+    except:
+        bot.send_message(m.chat.id, "ты ебак? тут пусто")
     
 @bot.message_handler(commands=['addpasuk'])
 def addpasuka(m):
