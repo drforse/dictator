@@ -136,7 +136,7 @@ def inline(call):
         kb2.add(*buttons2)
         kb2.add(*buttons3)
         result=editmsg(game, True)
-        medit('Игра окончена юзером '+call.from_user.first_name+'! Результаты:\n'+result, call.message.chat.id, call.message.message_id, reply_markup=kb2)
+        medit('Игра обкончена ебланом '+call.from_user.first_name+'! Результаты:\n'+result, call.message.chat.id, call.message.message_id, reply_markup=kb2)
 
   except Exception as e:
     bot.send_message(512006137, traceback.format_exc())
