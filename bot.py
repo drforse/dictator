@@ -167,7 +167,7 @@ def pasuka(m):
     
 @bot.message_handler(commands=['addpasuk'])
 def addpasuka(m):
-    if m.user_id in odmens:
+    if m.from_user.id in odmens:
         lol=m.text.split(' ', maxsplit = 1)
         lol=lol[1]
         pasuki.append(lol)
