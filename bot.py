@@ -167,10 +167,13 @@ def pasukandiy(m):
     bot.send_message(m.chat.id, ttts)
     
 @bot.message_handler(commands=['addgo'])
-def addpasukandiy(m):    
-    addgo=m.text.split(' ', maxsplit = 1)
-    deystviya.append(addgo[1])
-    
+def addpasukandiy(m):   
+    try:
+        addgo=m.text.split(' ', maxsplit = 1)
+        deystviya.append(addgo[1])
+    except:
+        bot.send_message(m.chat.id, "ебак тупой")
+        
 print('7777')
 bot.polling(none_stop=True,timeout=600)
 
