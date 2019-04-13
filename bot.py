@@ -118,12 +118,16 @@ def inline(call):
         buttons1=[]
         buttons2=[]
         buttons3=[]
+        sasole = random.randint(1, 100000)
         i=1
         while i<=9:
             if i in game['dicks']:
                 emoj='🐴'
             elif i in game['govno']:
-                emoj='💩'
+                if sasole == 1:
+                    emoj='💎'
+                else:
+                    emoj='💩'
             else:
                 emoj='💨'
             if i<=3:
