@@ -169,7 +169,7 @@ def pasukandiy(m):
 @bot.message_handler(commands=['addgo'])
 def addpasukandiy(m):    
     addgo=m.text.split(' ', maxsplit = 1)
-    deystviya.append(text[1])
+    deystviya.append(addgo[1])
     
 print('7777')
 bot.polling(none_stop=True,timeout=600)
