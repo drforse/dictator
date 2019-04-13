@@ -162,7 +162,7 @@ def editmsg(game, end=False):
     
 @bot.message_handler(commands=['pasukgo'])
 def pasukandiy(m):
-    ttts = random.choise(deystviya)
+    ttts = random.choice(deystviya)
     ttts = "Пасюк " + ttts + " !"
     bot.send_message(m.chat.id, ttts)
     
