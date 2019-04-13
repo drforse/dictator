@@ -15,7 +15,7 @@ bot = telebot.TeleBot(token)
 
 polls={}
 number=0
-
+deystviya = ['ебет слона', 'ебет корову']
 
 try:
     pass
@@ -160,7 +160,17 @@ def editmsg(game, end=False):
             text+=game['users'][ids]['name']+': 💨открыл(а) пустую коробку\n'
     return text
     
-
+@bot.message_handler(commands=['pasukgo'])
+def pasukandiy(m):
+    ttts = random.choise(deystviya)
+    ttts = "Пасюк " + ttts + " !"
+    bot.send_message(m.chat.id, ttts)
+    
+@bot.message_handler(commands=['addgo'])
+def addpasukandiy(m):    
+    addgo=m.text.split(' ', maxsplit = 1)
+    addgo=text[1]
+    deystviya.append(addgo)
     
 print('7777')
 bot.polling(none_stop=True,timeout=600)
