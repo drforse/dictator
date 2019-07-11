@@ -127,7 +127,7 @@ def unmutee(m):
             bot.send_message(m.chat.id, 'Хм, у тебя нет паспорта! ВДРУГ ТЫ ПЕНИС?')
       except:
         bot.send_message(m.chat.id, 'Вы долбанулись?')        
-bot.send_message(m.chat.id, traceback.format_exc())        
+        bot.send_message(m.from_user.id, traceback.format_exc())        
 print('7777')
 bot.send_message(bpl_group_id,'Доброе утро, страна!')
 bot.polling(none_stop=True,timeout=600)
