@@ -19,8 +19,8 @@ def getinfo(m):
 def mutee(m):
     if m.chat.id!=m.from_user.id:
       try:
-        chat_member = bot.get_chat_member(message.chat.id, message.from_user.id)
-        reply_member = bot.get_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+        chat_member = bot.get_chat_member(m.chat.id, m.from_user.id)
+        reply_member = bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id)
         if сhat_member.status in adminos_telebotos and reply_member.status not in adminos_telebotos:
             text=m.text.split(' ')
             try:
