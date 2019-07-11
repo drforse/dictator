@@ -8,7 +8,7 @@ from emoji import emojize
 from telebot import types
 from pymongo import MongoClient
 import traceback
-
+adminos_telebotos=['administrator', 'creator']
 bpl_group_id = -1001250245627
 token = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(token)
@@ -19,7 +19,7 @@ def getinfo(m):
 def mutee(m):
     if m.chat.id!=m.from_user.id:
       try:
-        if m.from_user.id in GLOBALADMINS and m.reply_to_message.from_user.id not in GLOBALADMINS:
+        if сhat_member.status in adminos_telebotos and reply_member.status not in adminos_telebotos:
             text=m.text.split(' ')
             try:
                 timee=text[1]
@@ -46,14 +46,14 @@ def mutee(m):
                 ahref = '[' +m.reply_to_message.from_user.first_name + ']' + '(tg://user?id=' +  str(m.reply_to_message.from_user.id) + ')'
                 bot.restrict_chat_member(can_send_messages=False, user_id=m.reply_to_message.from_user.id, chat_id=m.chat.id, until_date=untildate)
                 if i==0:
-                    text='🔇Поставила ' + ahref + ' в угол навсегда.'
+                    text='Кинул ' + ahref + ' в мут навсегда.'
                 else:
-                    text='🔇Поставила ' + ahref + ' в угол на '+str(i)+' '+datetext+'.'
+                    text='Кинул ' + ahref + ' в мут '+str(i)+' '+datetext+'.'
                 bot.send_message(m.chat.id, text, parse_mode='Markdown')
         else:
-            bot.send_message(m.chat.id, 'Да как ты разговариваешь со старшими!')
+            bot.send_message(m.chat.id, 'Админа нельзя мутить, даже за пенисы.')
       except Exception as e:
-        bot.send_message(m.chat.id, 'Голова болит...')
+        bot.send_message(m.chat.id, 'Вы долбанулись?')
         
 print('7777')
 bot.send_message(bpl_group_id,'Доброе утро, страна!')
