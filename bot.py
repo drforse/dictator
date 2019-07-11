@@ -54,6 +54,7 @@ def mutee(m):
             bot.send_message(m.chat.id, 'Админа нельзя мутить, даже за пенисы.')
       except Exception as e:
         bot.send_message(m.chat.id, 'Вы долбанулись?')
+        print(traceback.format_exc())
         
 print('7777')
 bot.send_message(bpl_group_id,'Доброе утро, страна!')
