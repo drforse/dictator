@@ -17,7 +17,6 @@ def getinfo(m):
     bot.send_message(m.chat.id, str(m))        
 @bot.message_handler(commands=['mute'])
 def mutee(m):
-    
     if m.chat.id!=m.from_user.id:
       try:
         if m.from_user.id in GLOBALADMINS and m.reply_to_message.from_user.id not in GLOBALADMINS:
@@ -54,7 +53,7 @@ def mutee(m):
         else:
             bot.send_message(m.chat.id, 'Да как ты разговариваешь со старшими!')
       except Exception as e:
-bot.send_message(m.chat.id, 'Голова болит...')
+        bot.send_message(m.chat.id, 'Голова болит...')
         
 print('7777')
 bot.polling(none_stop=True,timeout=600)
