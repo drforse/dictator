@@ -21,7 +21,7 @@ def mutee(m):
       try:
         chat_member = bot.get_chat_member(m.chat.id, m.from_user.id)
         reply_member = bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id)
-        if сhat_member.status in adminos_telebotos and reply_member.status not in adminos_telebotos:
+        if bot.get_chat_member(m.chat.id, m.from_user.id).status in adminos_telebotos and bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id).status not in adminos_telebotos:
             text=m.text.split(' ')
             try:
                 timee=text[1]
