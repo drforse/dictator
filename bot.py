@@ -9,7 +9,7 @@ from telebot import types
 from pymongo import MongoClient
 import traceback
 
-
+bpl_group_id = 1250245627
 token = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(token)
 @bot.message_handler(commands=['infomsg'])
@@ -56,5 +56,6 @@ def mutee(m):
         bot.send_message(m.chat.id, 'Голова болит...')
         
 print('7777')
+bot.send_message(bpl_group_id,'Доброе утро, страна!')
 bot.polling(none_stop=True,timeout=600)
 
