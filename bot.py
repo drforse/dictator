@@ -172,7 +172,7 @@ def giverep(m):
 @bot.message_handler()
 def msg_handler_text(m):
     if rep300.get(m.from_user.id) == None:
-        rep300.update({m.from_user.id:0})
+        rep300.update({m.from_user.id:1})
     else:
         lastrep=rep300[m.from_user.id]
         newrep=lastrep+1
