@@ -12,9 +12,18 @@ adminos_telebotos=['administrator', 'creator']
 bpl_group_id = -1001250245627
 token = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(token)
+rep300={}
+brit_id=850666493
 @bot.message_handler(commands=['infomsg'])
 def getinfo(m):
-    bot.send_message(m.chat.id, str(m))        
+    bot.send_message(m.chat.id, str(m))
+@bot.message_handler(commands=['userinfo'])
+def userinfo(m):
+    tts = 'Кличка ебаная: ' + m.from_user.first_name + ' ' + m.from_user.last_name
+    tts += 'Айди: ' + m.from_user.id
+    tts += 'Статус: ' + bot.get_chat_member(m.chat.id, m.from_user.id)
+    tts += 'Репутация за день (до того момента, пока я не слетел): ' + str(rep300[m.from_user.id])
+    bot.send_message(m.chat.id, tts)    
 @bot.message_handler(commands=['mute'])
 def mutee(m):
     if m.chat.id!=m.from_user.id:
@@ -128,7 +137,30 @@ def unmutee(m):
       except:
         bot.send_message(m.chat.id, 'Вы долбанулись?')        
         bot.send_message(m.from_user.id, traceback.format_exc())        
+@bot.message_handler(commands=['giverep'])
+def giverep(m):
+    if m.from_user.id==brit_id:
+        reptogive = int(m.text.split(' ', 1)[1])
+        whotogive = m.reply_to_message.from_user.id
+        if rep300.get(m.from_user.id) != None:
+            lastrep=rep300[whotogive]
+            newrep=lastrep+reptogive
+            rep300.update({whotogive:newrep})
+        else:
+            lastrep=0
+            newrep=lastrep+reptogive
+            rep300.update({whotogive:newrep})
+    else:
+        bot.send_message(m.chat.id, 'Хм, у тебя нет паспорта! ВДРУГ ТЫ ПЕНИС?')
+@bot.message_handler()
+def msg_handler_text(m):
+    if rep300.get(m.from_user.id) == None:
+        rep300.update({m.from_user.id:0})
+    else:
+        lastrep=rep300[m.from_user.id]
+        newrep=lastrep+1
+        rep300.update({m.from_user.id:newrep})
 print('7777')
-bot.send_message(bpl_group_id,'Доброе утро, страна!')
+bot.send_message(bpl_group_id,'Доброе утро, страна! (Я блять слетел, репутация улетела в пездак)')
 bot.polling(none_stop=True,timeout=600)
 
