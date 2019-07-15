@@ -24,10 +24,7 @@ def meinfo(m):
         lazt_name = m.from_user.last_name
     except:
         lazt_name = ''
-    tts = 'Кличка ебаная: ' + m.from_user.first_name + ' ' + lazt_name + 'n\''
-    tts += 'Айди: ' + str(m.from_user.id) + 'n\''
-    tts += 'Статус: ' + bot.get_chat_member(m.chat.id, m.from_user.id).status + 'n\''
-    tts += 'Репутация за день (до того момента, пока я не слетел): ' + str(rep300[m.from_user.id]) + 'n\''
+    tts = 'Кличка ебаная: ' + m.from_user.first_name + ' ' + lazt_name + 'n\Айди: ' + str(m.from_user.id) + 'n\Статус: ' + bot.get_chat_member(m.chat.id, m.from_user.id).status + 'n\Репутация за день (до того момента, пока я не слетел): ' + str(rep300[m.from_user.id])
     bot.send_message(m.chat.id, tts)
 @bot.message_handler(commands=['userinfo'])
 def userinfo(m):
