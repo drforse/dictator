@@ -24,8 +24,11 @@ def meinfo(m):
         lazt_name = m.from_user.last_name
     except:
         lazt_name = ''
-    tts = 'Кличка ебаная: ' + m.from_user.first_name + ' ' + lazt_name + '\nАйди: ' + str(m.from_user.id) + '\nСтатус: ' + bot.get_chat_member(m.chat.id, m.from_user.id).status + '\nРепутация за день (до того момента, пока я не слетел): ' + str(rep300[m.from_user.id])
-    bot.send_message(m.chat.id, tts)
+    try:
+        tts = 'Кличка ебаная: ' + m.from_user.first_name + ' ' + lazt_name + '\nАйди: ' + str(m.from_user.id) + '\nСтатус: ' + bot.get_chat_member(m.chat.id, m.from_user.id).status + '\nРепутация за день (до того момента, пока я не слетел): ' + str(rep300[m.from_user.id])
+        bot.send_message(m.chat.id, tts)
+    except:
+        bot.send_message(m.chat.id, "Напиши сообщение, геище!")
 @bot.message_handler(commands=['userinfo'])
 def userinfo(m):
     try:
@@ -33,8 +36,11 @@ def userinfo(m):
         lazt_name = m.reply_to_message.from_user.last_name
     except:
         lazt_name = ''
-    tts = 'Кличка ебаная: ' + m.reply_to_message.from_user.first_name + ' ' + lazt_name + '\nАйди: ' + str(m.reply_to_message.from_user.id) + '\nСтатус: ' + bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id).status + '\nРепутация за день (до того момента, пока я не слетел): ' + str(rep300[m.reply_to_message.from_user.id])
-    bot.send_message(m.chat.id, tts)       
+    try:
+        tts = 'Кличка ебаная: ' + m.reply_to_message.from_user.first_name + ' ' + lazt_name + '\nАйди: ' + str(m.reply_to_message.from_user.id) + '\nСтатус: ' + bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id).status + '\nРепутация за день (до того момента, пока я не слетел): ' + str(rep300[m.reply_to_message.from_user.id])
+        bot.send_message(m.chat.id, tts) 
+    except:
+        bot.send_message(m.chat.id, "Напиши сообщение, геище!")     
 @bot.message_handler(commands=['mute'])
 def mutee(m):
     if m.chat.id!=m.from_user.id:
