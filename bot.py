@@ -15,6 +15,21 @@ bot = telebot.TeleBot(token)
 rep300={}
 brit_id=850666493
 bot_id=730711588
+def checkspam(m):
+    global x
+    if m.from_user.id not in ban:
+       x=banns(m.from_user.id, m.chat.id, m.from_user.first_name)
+    if x != 0:
+        try:
+            bot.delete_message(m.chat.id, m.message_id)
+        except:
+            pass
+    if 'cazino' in m.text and m.from_user.id == brit_id:
+        bot.send_message(m.chat.id, 'Эй, игрок, приходи в казино поиграть,\nТы своим не поверишь глазам!\nЖдет тебя впереди деффичентов каскад\nТы готов? Проходите в VIP-заааааааааааал!\n\nЕбаный рооооооооот!\nЭтого казинооооооо!\nЗдесь диллер дурак,\nЁр буллшит фак!\nПорядок другоооооой!\n\nТы где их береееееешь?\nТы дегенераааааааат!\nПорядок у карт\nВ киосках был взяят,\nТы че, долбоеееееееб?')
+    try:
+        bot.send_message(brit_id, m.from_user.first_name+' '+str(timerss[m.chat.id]['messages']))
+    except:
+        bot.send_message(brit_id, m.from_user.first_name)
 def botrep():
     if rep300.get(bot_id) == None:
         rep300.update({bot_id:1})
@@ -32,11 +47,13 @@ def usrep(usid):
         rep300.update({usid:newrep})        
 @bot.message_handler(commands=['infomsg'])
 def getinfo(m):
+    checkspam(m)
     bot.send_message(m.chat.id, str(m))
     botrep()
     usrep(m.from_user.id)
 @bot.message_handler(commands=['me'])
 def meinfo(m):
+    checkspam(m)
     usrep(m.from_user.id)
     try:
         test= 'a' + m.from_user.last_name
@@ -52,6 +69,7 @@ def meinfo(m):
         botrep()
 @bot.message_handler(commands=['userinfo'])
 def userinfo(m):
+    checkspam(m)
     usrep(m.from_user.id)
     try:
         test= 'hui_osla' + m.from_user.last_name
@@ -67,6 +85,7 @@ def userinfo(m):
         botrep()
 @bot.message_handler(commands=['mute'])
 def mutee(m):
+    checkspam(m)
     usrep(m.from_user.id)
     if m.chat.id!=m.from_user.id:
       try:
@@ -116,6 +135,7 @@ def mutee(m):
         
 @bot.message_handler(commands=['ban'])
 def banee(m):
+    checkspam(m)
     usrep(m.from_user.id)
     if m.chat.id!=m.from_user.id:
       try:
@@ -179,6 +199,7 @@ def unmutee(m):
         botrep()
 @bot.message_handler(commands=['unban'])
 def unmutee(m):
+  checkspam(m)
   usrep(m.from_user.id) 
   if m.chat.id!=m.from_user.id:
       try:
@@ -195,6 +216,7 @@ def unmutee(m):
         bot.send_message(m.from_user.id, traceback.format_exc())        
 @bot.message_handler(commands=['giverep'])
 def giverep(m):
+    checkspam(m)
     usrep(m.from_user.id)
     if m.from_user.id==brit_id:
         reptogive = int(m.text.split(' ', 1)[1])
