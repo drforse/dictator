@@ -14,9 +14,18 @@ token = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(token)
 rep300={}
 brit_id=850666493
+bot_id=730711588
+def botrep():
+    if rep300.get(bot_id) == None:
+        rep300.update({bot_id:1})
+    else:
+        lastrep=rep300[bot_id]
+        newrep=lastrep+1
+        rep300.update({bot_id:newrep})
 @bot.message_handler(commands=['infomsg'])
 def getinfo(m):
     bot.send_message(m.chat.id, str(m))
+    botrep()
 @bot.message_handler(commands=['me'])
 def meinfo(m):
     try:
@@ -27,8 +36,10 @@ def meinfo(m):
     try:
         tts = 'Кличка ебаная: ' + m.from_user.first_name + ' ' + lazt_name + '\nАйди: ' + str(m.from_user.id) + '\nСтатус: ' + bot.get_chat_member(m.chat.id, m.from_user.id).status + '\nРепутация за день (до того момента, пока я не слетел): ' + str(rep300[m.from_user.id])
         bot.send_message(m.chat.id, tts)
+        botrep()
     except:
         bot.send_message(m.chat.id, "Напиши сообщение, геище!")
+        botrep()
 @bot.message_handler(commands=['userinfo'])
 def userinfo(m):
     try:
@@ -38,9 +49,11 @@ def userinfo(m):
         lazt_name = ''
     try:
         tts = 'Кличка ебаная: ' + m.reply_to_message.from_user.first_name + ' ' + lazt_name + '\nАйди: ' + str(m.reply_to_message.from_user.id) + '\nСтатус: ' + bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id).status + '\nРепутация за день (до того момента, пока я не слетел): ' + str(rep300.get(m.reply_to_message.from_user.id, "Он не написал сбщ, ебаклак!"))
-        bot.send_message(m.chat.id, tts) 
+        bot.send_message(m.chat.id, tts)
+        botrep()
     except:
         bot.send_message(m.chat.id, "Этот гей не написал сообщениее!")     
+        botrep()
 @bot.message_handler(commands=['mute'])
 def mutee(m):
     if m.chat.id!=m.from_user.id:
@@ -78,10 +91,13 @@ def mutee(m):
                 else:
                     text='Кинул ' + ahref + ' в мут '+str(i)+' '+datetext+'.'
                 bot.send_message(m.chat.id, text, parse_mode='Markdown')
+                botrep()
         else:
             bot.send_message(m.chat.id, 'Админа нельзя мутить, даже за пенисы.')
+            botrep()
       except Exception as e:
         bot.send_message(m.chat.id, 'Вы долбанулись?')
+        botrep()
         print(traceback.format_exc())
 
         
@@ -123,10 +139,13 @@ def banee(m):
                 else:
                     text='Кинул ' + ahref + ' в бан '+str(i)+' '+datetext+'.'
                 bot.send_message(m.chat.id, text, parse_mode='Markdown')
+                botrep()
         else:
             bot.send_message(m.chat.id, 'Админа нельзя банить, даже за пенисы.')
+            botrep()
       except Exception as e:
         bot.send_message(m.chat.id, 'Вы долбанулись?')
+        botrep()
         print(traceback.format_exc())        
         
 @bot.message_handler(commands=['unmute'])
@@ -137,22 +156,27 @@ def unmutee(m):
             ahref = '[' +m.reply_to_message.from_user.first_name + ']' + '(tg://user?id=' +  str(m.reply_to_message.from_user.id) + ')'
             bot.restrict_chat_member(can_send_messages=True, can_send_other_messages=True, user_id=m.reply_to_message.from_user.id, chat_id=m.chat.id)
             bot.send_message(m.chat.id, 'Анмутил '+ahref+'.', parse_mode='Markdown')
+            botrep()
         else:
             bot.send_message(m.chat.id, 'Хм, у тебя нет паспорта! ВДРУГ ТЫ ПЕНИС?')
+            botrep()
       except:
         bot.send_message(m.chat.id, 'Вы долбанулись?')
+        botrep()
 @bot.message_handler(commands=['unban'])
 def unmutee(m): 
   if m.chat.id!=m.from_user.id:
       try:
-        if bot.get_chat_member(m.chat.id, m.from_user.id).status in adminos_telebotos:
+        if bot.get_chat_member(m.chat.id, m.from_user.id).status in adminos_telebotos and m.reply_to_message.from_user.id != bot_id:
             ahref = '[' +m.reply_to_message.from_user.first_name + ']' + '(tg://user?id=' +  str(m.reply_to_message.from_user.id) + ')'
             bot.unban_chat_member(can_send_messages=True, can_send_other_messages=True, user_id=m.reply_to_message.from_user.id, chat_id=m.chat.id)
             bot.send_message(m.chat.id, 'Анбанил '+ahref+'.', parse_mode='Markdown')
         else:
             bot.send_message(m.chat.id, 'Хм, у тебя нет паспорта! ВДРУГ ТЫ ПЕНИС?')
+            botrep()
       except:
-        bot.send_message(m.chat.id, 'Вы долбанулись?')        
+        bot.send_message(m.chat.id, 'Вы долбанулись?')
+        botrep()
         bot.send_message(m.from_user.id, traceback.format_exc())        
 @bot.message_handler(commands=['giverep'])
 def giverep(m):
@@ -163,12 +187,17 @@ def giverep(m):
             lastrep=rep300[whotogive]
             newrep=lastrep+reptogive
             rep300.update({whotogive:newrep})
+            bot.send_message(m.chat.id, 'Выдал.')
+            botrep()
         else:
             lastrep=0
             newrep=lastrep+reptogive
             rep300.update({whotogive:newrep})
+            bot.send_message(m.chat.id, 'Выдал.')
+            botrep()
     else:
         bot.send_message(m.chat.id, 'Хм, у тебя нет паспорта! ВДРУГ ТЫ ПЕНИС?')
+        botrep()
 @bot.message_handler()
 def msg_handler_text(m):
     if rep300.get(m.from_user.id) == None:
@@ -178,6 +207,7 @@ def msg_handler_text(m):
         newrep=lastrep+1
         rep300.update({m.from_user.id:newrep})
 print('7777')
+botrep()
 bot.send_message(bpl_group_id,'Доброе утро, страна! (Я блять слетел, репутация улетела в пездак)')
 bot.polling(none_stop=True,timeout=600)
 
