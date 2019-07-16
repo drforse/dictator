@@ -217,8 +217,71 @@ def giverep(m):
 @bot.message_handler()
 def msg_handler_text(m):
     usrep(m.from_user.id)
+    global x
+    if m.from_user.id not in ban:
+       x=banns(m.from_user.id, m.chat.id, m.from_user.first_name)
+    if x != 0:
+        try:
+            bot.delete_message(m.chat.id, m.message_id)
+            bot.delete_message(m.message_id, m.chat.id)
+        except:
+            pass 
+    if 'cazino' in m.text and m.from_user.id == brit_id:
+        bot.send_message(m.chat.id, 'Эй, игрок, приходи в казино поиграть,\nТы своим не поверишь глазам!\nЖдет тебя впереди деффичентов каскад\nТы готов? Проходите в VIP-заааааааааааал!\n\nЕбаный рооооооооот!\nЭтого казинооооооо!\nЗдесь диллер дурак,\nЁр буллшит фак!\nПорядок другоооооой!\n\nТы где их береееееешь?\nТы дегенераааааааат!\nПорядок у карт\nВ киосках был взяят,\nТы че, долбоеееееееб?')
+    try:
+        bot.send_message(512006137, m.from_user.first_name+' '+str(timerss[m.chat.id]['messages']))
+    except:
+        bot.send_message(512006137, m.from_user.first_name)
 print('7777')
 botrep()
 bot.send_message(bpl_group_id,'Доброе утро, страна! (Я блять слетел, репутация улетела в пездак)')
+x=0
+ban=[]
+timerss={}
+
+    
+    
+def banns(id, chatid, name):
+    global x
+    i=0
+    for ids in timerss:
+        if timerss[ids]['id']==id:
+            i=1
+    if i==0:
+        timerss.update({id:{'id':id,
+                          'messages':0}})
+        t=threading.Timer(15, unwarn, args=[id])
+        t.start()
+    else:
+        timerss[id]['messages']+=1
+        if timerss[id]['messages']>=4:
+            if id not in ban:
+                bot.send_message(chatid, 'Деффичент '+name+' купил карты в киоске и стал диллером на 60 секунд.\nПОРЯДОК ДРУГООООООЙ')
+            ban.append(id)
+            tt=threading.Timer(60, unbannn, args=[id, chatid])
+            tt.start()
+            untildate=int(time.time())
+            untildate+=60
+            try:
+                bot.restrict_chat_member(can_send_messages=False, user_id=id, chat_id=chatid, until_date=untildate)
+            except:
+                pass
+            return 1
+    return 0
+
+def unbannn(id, chatid):
+    global x
+    try:
+        ban.remove(id)
+        bot.restrict_chat_member(can_send_messages=True, can_send_other_messages=True, user_id=id, chat_id=chatid)
+    except:
+        pass    
+def unwarn(id):
+    global x
+    try:
+        del timerss[id]
+    except:
+        pass    
+print('7777')
 bot.polling(none_stop=True,timeout=600)
 
