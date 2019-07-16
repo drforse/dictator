@@ -16,20 +16,7 @@ rep300={}
 brit_id=850666493
 bot_id=730711588
 def checkspam(m):
-    global x
-    if m.from_user.id not in ban:
-       x=banns(m.from_user.id, m.chat.id, m.from_user.first_name)
-    if x != 0:
-        try:
-            bot.delete_message(m.chat.id, m.message_id)
-        except:
-            pass
-    if 'cazino' in m.text and m.from_user.id == brit_id:
-        bot.send_message(m.chat.id, 'Эй, игрок, приходи в казино поиграть,\nТы своим не поверишь глазам!\nЖдет тебя впереди деффичентов каскад\nТы готов? Проходите в VIP-заааааааааааал!\n\nЕбаный рооооооооот!\nЭтого казинооооооо!\nЗдесь диллер дурак,\nЁр буллшит фак!\nПорядок другоооооой!\n\nТы где их береееееешь?\nТы дегенераааааааат!\nПорядок у карт\nВ киосках был взяят,\nТы че, долбоеееееееб?')
-    try:
-        bot.send_message(brit_id, m.from_user.first_name+' '+str(timerss[m.chat.id]['messages']))
-    except:
-        bot.send_message(brit_id, m.from_user.first_name)
+    pass
 def botrep():
     if rep300.get(bot_id) == None:
         rep300.update({bot_id:1})
