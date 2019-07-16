@@ -22,12 +22,22 @@ def botrep():
         lastrep=rep300[bot_id]
         newrep=lastrep+1
         rep300.update({bot_id:newrep})
+        
+def usrep(usid):
+    if rep300.get(usid) == None:
+        rep300.update({usid:1})
+    else:
+        lastrep=rep300[usid]
+        newrep=lastrep+1
+        rep300.update({usid:newrep})        
 @bot.message_handler(commands=['infomsg'])
 def getinfo(m):
     bot.send_message(m.chat.id, str(m))
     botrep()
+    usrep(m.from_user.id)
 @bot.message_handler(commands=['me'])
 def meinfo(m):
+    usrep(m.from_user.id)
     try:
         test= 'a' + m.from_user.last_name
         lazt_name = m.from_user.last_name
@@ -42,6 +52,7 @@ def meinfo(m):
         botrep()
 @bot.message_handler(commands=['userinfo'])
 def userinfo(m):
+    usrep(m.from_user.id)
     try:
         test= 'hui_osla' + m.from_user.last_name
         lazt_name = m.reply_to_message.from_user.last_name
@@ -56,6 +67,7 @@ def userinfo(m):
         botrep()
 @bot.message_handler(commands=['mute'])
 def mutee(m):
+    usrep(m.from_user.id)
     if m.chat.id!=m.from_user.id:
       try:
         chat_member = bot.get_chat_member(m.chat.id, m.from_user.id)
@@ -104,6 +116,7 @@ def mutee(m):
         
 @bot.message_handler(commands=['ban'])
 def banee(m):
+    usrep(m.from_user.id)
     if m.chat.id!=m.from_user.id:
       try:
         chat_member = bot.get_chat_member(m.chat.id, m.from_user.id)
@@ -150,6 +163,7 @@ def banee(m):
         
 @bot.message_handler(commands=['unmute'])
 def unmutee(m): 
+  usrep(m.from_user.id)  
   if m.chat.id!=m.from_user.id:
       try:
         if bot.get_chat_member(m.chat.id, m.from_user.id).status in adminos_telebotos:
@@ -164,7 +178,8 @@ def unmutee(m):
         bot.send_message(m.chat.id, 'Вы долбанулись?')
         botrep()
 @bot.message_handler(commands=['unban'])
-def unmutee(m): 
+def unmutee(m):
+  usrep(m.from_user.id) 
   if m.chat.id!=m.from_user.id:
       try:
         if bot.get_chat_member(m.chat.id, m.from_user.id).status in adminos_telebotos and m.reply_to_message.from_user.id != bot_id:
@@ -180,6 +195,7 @@ def unmutee(m):
         bot.send_message(m.from_user.id, traceback.format_exc())        
 @bot.message_handler(commands=['giverep'])
 def giverep(m):
+    usrep(m.from_user.id)
     if m.from_user.id==brit_id:
         reptogive = int(m.text.split(' ', 1)[1])
         whotogive = m.reply_to_message.from_user.id
@@ -200,12 +216,7 @@ def giverep(m):
         botrep()
 @bot.message_handler()
 def msg_handler_text(m):
-    if rep300.get(m.from_user.id) == None:
-        rep300.update({m.from_user.id:1})
-    else:
-        lastrep=rep300[m.from_user.id]
-        newrep=lastrep+1
-        rep300.update({m.from_user.id:newrep})
+    usrep(m.from_user.id)
 print('7777')
 botrep()
 bot.send_message(bpl_group_id,'Доброе утро, страна! (Я блять слетел, репутация улетела в пездак)')
