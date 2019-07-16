@@ -37,10 +37,10 @@ def userinfo(m):
     except:
         lazt_name = ''
     try:
-        tts = 'Кличка ебаная: ' + m.reply_to_message.from_user.first_name + ' ' + lazt_name + '\nАйди: ' + str(m.reply_to_message.from_user.id) + '\nСтатус: ' + bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id).status + '\nРепутация за день (до того момента, пока я не слетел): ' + str(rep300[m.reply_to_message.from_user.id])
+        tts = 'Кличка ебаная: ' + m.reply_to_message.from_user.first_name + ' ' + lazt_name + '\nАйди: ' + str(m.reply_to_message.from_user.id) + '\nСтатус: ' + bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id).status + '\nРепутация за день (до того момента, пока я не слетел): ' + str(rep300.get(m.reply_to_message.from_user.id, "Он не написал сбщ, ебаклак!")
         bot.send_message(m.chat.id, tts) 
     except:
-        bot.send_message(m.chat.id, "Напиши сообщение, геище!")     
+        bot.send_message(m.chat.id, "Этот гей не написал сообщениее!")     
 @bot.message_handler(commands=['mute'])
 def mutee(m):
     if m.chat.id!=m.from_user.id:
