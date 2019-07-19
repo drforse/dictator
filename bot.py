@@ -6,7 +6,7 @@ import random
 import threading
 from emoji import emojize
 from telebot import types
-from pymongo import MongoClient
+#  Ты ведь его не используешь лол
 import traceback
 adminos_telebotos=['administrator', 'creator']
 bpl_group_id = -1001250245627
@@ -258,7 +258,7 @@ def banns(id, chatid, name):
     if i==0:
         timerss.update({id:{'id':id,
                           'messages':0}})
-        t=threading.Timer(15, unwarn, args=[id])
+        t=threading.Timer(3, unwarn, args=[id])  # За 15 секунд 5 сообщений твое ограничение? Че за пиздец, лул
         t.start()
     else:
         timerss[id]['messages']+=1
@@ -266,8 +266,7 @@ def banns(id, chatid, name):
             if id not in ban:
                 bot.send_message(chatid, 'Деффичент '+name+' купил карты в киоске и стал диллером на 60 секунд.\nПОРЯДОК ДРУГООООООЙ')
             ban.append(id)
-            tt=threading.Timer(60, unbannn, args=[id, chatid])
-            tt.start()
+            #  Ты ведь ставишь untildate, telegram сам разбанит хммммммммм!
             untildate=int(time.time())
             untildate+=60
             try:
