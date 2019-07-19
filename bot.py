@@ -265,12 +265,15 @@ def banns(id, chatid, name):
         if timerss[id]['messages']>=4:
             if id not in ban:
                 bot.send_message(chatid, 'Деффичент '+name+' купил карты в киоске и стал диллером на 60 секунд.\nПОРЯДОК ДРУГООООООЙ')
-            ban.append(id)
-            #  Ты ведь ставишь untildate, telegram сам разбанит хммммммммм!
+            ban.append(id)  # вообще хз зачем, ну ок
+            tt = threading.Timer(60, unbannn, args=[id, chatid])
             untildate=int(time.time())
             untildate+=60
             try:
-                bot.restrict_chat_member(can_send_messages=False, user_id=id, chat_id=chatid, until_date=untildate)
+                if id not in ban:  # ну раз уж оно есть, пусть смысл имеет какой то, не?
+                    bot.restrict_chat_member(can_send_messages=False, user_id=id, chat_id=chatid, until_date=untildate)
+                else:
+                    print('tg, как ты позволяешь ему писать, или просто мой бот говно и медлит?')
             except:
                 pass
             return 1
@@ -279,8 +282,8 @@ def banns(id, chatid, name):
 def unbannn(id, chatid):
     global x
     try:
-        ban.remove(id)
-        bot.restrict_chat_member(can_send_messages=True, can_send_other_messages=True, user_id=id, chat_id=chatid)
+        ban.remove(id)  # вообще хз зачем, ну ок
+        # untildate же есть, зачем еще и тут анбан, если тг сам.
     except:
         pass    
 def unwarn(id):
