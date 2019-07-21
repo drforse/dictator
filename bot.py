@@ -52,7 +52,8 @@ def meinfo(m):
         bot.send_message(m.chat.id, tts)
         botrep()
     except:
-        bot.send_message(m.chat.id, "Напиши сообщение, геище!")
+        tts = 'Кличка ебаная: ' + m.from_user.first_name + ' ' + lazt_name + '\nАйди: ' + str(m.from_user.id) + '\nСтатус: ' + bot.get_chat_member(m.chat.id, m.from_user.id).status + '\nРепутация за день (до того момента, пока я не слетел): ' + '0')
+        bot.send_message(m.chat.id, tts)
         botrep()
 @bot.message_handler(commands=['userinfo'])
 def userinfo(m):
@@ -68,7 +69,8 @@ def userinfo(m):
         bot.send_message(m.chat.id, tts)
         botrep()
     except:
-        bot.send_message(m.chat.id, "Этот гей не написал сообщениее!")     
+        tts = 'Кличка ебаная: ' + m.reply_to_message.from_user.first_name + ' ' + lazt_name + '\nАйди: ' + str(m.reply_to_message.from_user.id) + '\nСтатус: ' + bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id).status + '\nРепутация за день (до того момента, пока я не слетел): ' + '0')
+        bot.send_message(m.chat.id, tts)  
         botrep()
 @bot.message_handler(commands=['mute'])
 def mutee(m):
